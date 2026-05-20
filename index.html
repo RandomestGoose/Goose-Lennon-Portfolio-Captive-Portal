@@ -47,18 +47,19 @@
 <div class="form-container">
     <h2>Enter your referral code</h2>
     <form onsubmit="redirectToUrl(event)">
-        <input type="text" id="referralCode">
+        <input type="text" id="code">
         <button type="submit">Continue</button>
     </form>
 </div>
 <script>
     function redirectToUrl(event) {
         event.preventDefault();
+        var referralCode = document.getElementById("code").value;
         if (event.referralCode == "5000") {
-            window.location.href = "https://www.sites.google.com/gooselennon/captivePortalSuccess";
+            window.location.href = "https://www.sites.google.com/view/gooselennon/captivePortalSuccess";
         }
         else {
-            window.location.href = "https://www.sites.google.com/gooselennon/captivePortalError";
+            window.location.href = "https://www.sites.google.com/view/gooselennon/captivePortalError";
         }
     }
 </script>
