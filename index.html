@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script>alert("test");</script>
     <meta charset="UTF-8">
     <title>Goose Lennon - Captive Portal</title>
     <style>
@@ -55,13 +54,23 @@
 <script>
     function redirectToUrl(event) {
         event.preventDefault();
-        var referralCode = document.getElementById("code").value;
-        alert(referralCode);
-        if (referralCode === "5000") {
-            window.location.href = "https://www.sites.google.com/view/gooselennon/captivePortalSuccess";
-        } else {
-            window.location.href = "https://www.sites.google.com/view/gooselennon/captivePortalError";
+        const referralCode = document.getElementById("code").value;
+        async function hashString(message) {
+            const msgUint8 = new TextEncoder().encode(message); 
+            const hashBuffer = await crypto.subtle.digest("SHA-256", msgUint8); 
+            const hashArray = Array.from(new Uint8Array(hashBuffer)); 
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join(''); 
+            return hashHex;
         }
+        async function run() {
+            const hash = await hashString(referralCode);
+            if (hash === "0f8eb4b72b6e0c9e88b388eb967b49e067ef1004bf07bffc22c3acb13b43580a") {
+                window.location.href = "https://sites.google.com/view/gooselennon/captivePortalSuccess";
+            } else {
+                window.location.href = "https://sites.google.com/view/gooselennon/captivePortalFailure";
+            }
+        }
+        run();
     }
 </script>
 </body>
