@@ -55,10 +55,10 @@
     function redirectToUrl(event) {
         event.preventDefault();
         var referralCode = document.getElementById("code").value;
-        if (referralCode == "5000") {
+        alert(referralCode);
+        if (referralCode === "5000") {
             window.location.href = "https://www.sites.google.com/view/gooselennon/captivePortalSuccess";
-        }
-        else {
+        } else {
             window.location.href = "https://www.sites.google.com/view/gooselennon/captivePortalError";
         }
     }
